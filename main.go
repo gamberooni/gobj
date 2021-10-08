@@ -152,7 +152,7 @@ func reportAfterDealCard(p *Player) {
 	reportPlayerState(p)
 }
 
-// ask whether the players want to hit or stand
+// ask whether the player wants to hit or stand
 func hitOrStand(d *Deck, p *Player) string {
 	aceCount := 0
 	for _, c := range p.Cards {
@@ -206,7 +206,7 @@ func startGame(d *Deck, players Players) {
 		fmt.Printf("[%s] has no more moves. Moving to next player.\n", p.name)
 	}
 	fmt.Println("Calculating the results...")
-	calculateOutcome(players)
+	decideOutcome(players)
 }
 
 // get the winner by comparing the player and the dealer
@@ -227,8 +227,8 @@ func getWinner(player *Player, dealer *Player) string {
 	return dealer.name
 }
 
-// calculate the outcome of the game
-func calculateOutcome(players Players) {
+// decide the outcome of the game
+func decideOutcome(players Players) {
 	for _, p := range players {
 		if p.name != "Dealer" {
 			winner := getWinner(p, players[len(players)-1])
